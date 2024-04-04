@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+</head>
+<body>
+<input placeholder="input order UID" name="orderUID" type="text">
+<br />
+<button onclick="getData()">send</button>
+<br />
+<textarea rows="50" cols="70"></textarea>
+</body>
+<script>
+    const button = document.querySelector('button');
+    const input = document.querySelector('input');
+    const textarea = document.querySelector('textarea')
+    const url = "http://localhost:8080/orders/"
+
+    async function getData() {
+        const response  = await	fetch(url+input.value)
+            .then(response => response.text()); // Декодируем ответ в формате json
+        textarea.value = response
+    }
+</script>
+</html>
